@@ -10,12 +10,17 @@ import UIKit
 
 class ColorSelectTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var labelColor: UILabel!
     @IBOutlet weak var viewColorPreview: UIView!
     
-    func loadSelectedColor(color: SelectedColor) {
-        self.labelColor.text = color.title
-        self.viewColorPreview.backgroundColor = color.color
+    func loadSelectedColor(color: UIColor) {
+        self.viewColorPreview.backgroundColor = color
+        self.viewColorPreview.layer.cornerRadius = 4
+        self.viewColorPreview.layer.borderColor = UIColor.blackColor().colorWithAlphaComponent(0.15).CGColor
+        self.viewColorPreview.layer.borderWidth = 1
+    }
+    
+    override func prepareForReuse() {
+        println("Prepare for reuse")
     }
 
 }
