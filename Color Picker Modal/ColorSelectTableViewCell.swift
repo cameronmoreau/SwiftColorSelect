@@ -18,9 +18,5 @@ class ColorSelectTableViewCell: UITableViewCell {
         self.viewColorPreview.layer.borderColor = UIColor.blackColor().colorWithAlphaComponent(0.15).CGColor
         self.viewColorPreview.layer.borderWidth = 1
     }
-    
-    override func prepareForReuse() {
-        println("Prepare for reuse")
-    }
 
 }

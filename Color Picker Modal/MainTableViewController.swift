@@ -12,14 +12,25 @@ class MainTableViewController: UITableViewController, ColorSelectCollectionViewC
     
     @IBOutlet weak var outletSelectedColor: ColorSelectTableViewCell!
     
-    //weak var selectedColor = UIColor.whiteColor()
+    var selectedColor: UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Init setup for the SelectedColor
-        //outletSelectedColor.loadSelectedColor(selectedColor!)
-        //println("Loaded with color: \(selectedColor)")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if cell == outletSelectedColor {
+            if let color = self.selectedColor {
+                outletSelectedColor.loadSelectedColor(color)
+            } else {
+                outletSelectedColor.loadSelectedColor(UIColor.whiteColor())
+            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -31,6 +42,7 @@ class MainTableViewController: UITableViewController, ColorSelectCollectionViewC
     }
     
     func didSelectColor(color: UIColor) {
+        self.selectedColor = color
         outletSelectedColor.loadSelectedColor(color)
     }
 }
